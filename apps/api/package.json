@@ -1,0 +1,48 @@
+{
+  "name": "@portal/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nest start --watch",
+    "predev": "pnpm --filter @portal/types build",
+    "build": "nest build",
+    "prebuild": "pnpm --filter @portal/types build && prisma generate",
+    "start": "node dist/src/main.js",
+    "lint": "eslint .",
+    "test": "node --import tsx --test src/**/*.test.ts",
+    "prisma:generate": "prisma generate",
+    "prisma:validate": "prisma validate",
+    "prisma:seed": "prisma db seed"
+  },
+  "dependencies": {
+    "@nestjs/common": "12.1.1",
+    "@nestjs/core": "12.1.1",
+    "@nestjs/jwt": "12.0.2",
+    "@nestjs/passport": "12.0.0",
+    "@nestjs/platform-express": "12.1.1",
+    "@portal/types": "workspace:*",
+    "@prisma/adapter-pg": "7.10.0",
+    "@prisma/client": "7.10.0",
+    "bcrypt": "6.0.0",
+    "class-transformer": "0.5.1",
+    "class-validator": "0.15.1",
+    "dotenv": "18.0.4",
+    "passport": "0.7.0",
+    "passport-jwt": "4.0.1",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "12.0.8",
+    "@nestjs/schematics": "12.0.6",
+    "@portal/config": "workspace:*",
+    "@types/bcrypt": "6.0.0",
+    "@types/node": "catalog:",
+    "@types/passport-jwt": "4.0.1",
+    "eslint": "catalog:",
+    "prisma": "7.10.0",
+    "tsx": "4.23.15",
+    "typescript": "catalog:"
+  }
+}
