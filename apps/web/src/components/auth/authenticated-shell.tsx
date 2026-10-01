@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useState, type ReactNode } from 'react';
+import { ArrowRightIcon } from '@/components/icons';
 import { SessionStatus } from './session-status';
 import { useAuth } from './auth-provider';
 
@@ -40,7 +41,7 @@ export function AuthenticatedShell({ children }: AuthenticatedShellProps) {
           </p>
           <button
             type="button"
-            className="mt-4 rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900"
+            className="mt-4 rounded-md bg-primary px-4 py-2 text-sm font-medium text-white outline-none hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             onClick={() => {
               void retrySession();
             }}
@@ -69,7 +70,7 @@ export function AuthenticatedShell({ children }: AuthenticatedShellProps) {
             </div>
             <button
               type="button"
-              className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-900 outline-none hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 disabled:cursor-not-allowed disabled:text-slate-400"
+              className="inline-flex items-center gap-1.5 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-900 outline-none hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:text-slate-400"
               disabled={isLoggingOut}
               onClick={() => {
                 setIsLoggingOut(true);
@@ -77,6 +78,7 @@ export function AuthenticatedShell({ children }: AuthenticatedShellProps) {
               }}
             >
               {isLoggingOut ? 'Saindo...' : 'Sair'}
+              <ArrowRightIcon />
             </button>
           </div>
         </div>

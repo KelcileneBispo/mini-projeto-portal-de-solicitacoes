@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { formatOpenedAt } from '@/lib/requests/format-date';
 import { categoryLabel } from '@/lib/requests/labels';
 import type { RequestListItem } from '@/types/api';
@@ -32,6 +33,9 @@ export function RequestList({ items }: RequestListProps) {
               <th className="px-4 py-3 font-medium" scope="col">
                 Status
               </th>
+              <th className="px-4 py-3 font-medium" scope="col">
+                Ações
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -43,7 +47,14 @@ export function RequestList({ items }: RequestListProps) {
                 <td className="px-4 py-3 font-medium text-slate-900">
                   {item.id}
                 </td>
-                <td className="px-4 py-3 text-slate-900">{item.title}</td>
+                <td className="px-4 py-3 text-slate-900">
+                  <Link
+                    href={`/requests/${item.id}`}
+                    className="font-medium text-slate-900 underline-offset-2 hover:underline"
+                  >
+                    {item.title}
+                  </Link>
+                </td>
                 <td className="px-4 py-3 text-slate-700">
                   {categoryLabel(item.category)}
                 </td>
@@ -55,6 +66,14 @@ export function RequestList({ items }: RequestListProps) {
                 </td>
                 <td className="px-4 py-3">
                   <StatusBadge status={item.status} />
+                </td>
+                <td className="px-4 py-3">
+                  <Link
+                    href={`/requests/${item.id}`}
+                    className="font-medium text-slate-900 underline-offset-2 hover:underline"
+                  >
+                    Ver detalhes
+                  </Link>
                 </td>
               </tr>
             ))}
@@ -72,7 +91,12 @@ export function RequestList({ items }: RequestListProps) {
               <StatusBadge status={item.status} />
             </div>
             <h2 className="mt-2 text-base font-semibold text-slate-900">
-              {item.title}
+              <Link
+                href={`/requests/${item.id}`}
+                className="underline-offset-2 hover:underline"
+              >
+                {item.title}
+              </Link>
             </h2>
             <dl className="mt-3 space-y-1 text-sm text-slate-700">
               <div className="flex justify-between gap-4">
@@ -88,6 +112,12 @@ export function RequestList({ items }: RequestListProps) {
                 <dd>{formatOpenedAt(item.createdAt)}</dd>
               </div>
             </dl>
+            <Link
+              href={`/requests/${item.id}`}
+              className="mt-4 inline-flex min-h-11 items-center text-sm font-medium text-slate-900 underline-offset-2 hover:underline"
+            >
+              Ver detalhes
+            </Link>
           </li>
         ))}
       </ul>

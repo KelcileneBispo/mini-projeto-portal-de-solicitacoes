@@ -1,8 +1,8 @@
 # Contrato da API — Portal de Solicitações Internas
 
-Contrato REST. Na Fase 2.4 foram implementados os endpoints de autenticação. Na Fase 2.5 foram implementados os endpoints de solicitações. Na Fase 2.6 a listagem passou a aceitar filtros combináveis e paginação completa, e `GET /dashboard` passou a devolver os totais globais.
+Contrato REST da API atual: autenticação, solicitações, filtros, paginação e dashboard.
 
-Base local prevista: `http://localhost:3001`. O navegador só é aceito a partir da origem em `CORS_ORIGIN`. Não há origem curinga.
+Base local: `http://localhost:3001`. O navegador só é aceito a partir da origem em `CORS_ORIGIN`. Não há origem curinga.
 
 Formato: JSON, UTF-8. Datas de resposta em ISO-8601 UTC. Nomes de campos JSON em camelCase.
 

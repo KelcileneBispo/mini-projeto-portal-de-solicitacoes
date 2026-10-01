@@ -68,3 +68,30 @@ export type RequestFilters = {
   from: string;
   to: string;
 };
+
+export type RequestDetail = {
+  id: number;
+  title: string;
+  description: string;
+  category: RequestCategory;
+  status: RequestStatus;
+  createdAt: string;
+  updatedAt: string;
+  requester: User;
+};
+
+export type CreateRequestPayload = {
+  title: string;
+  description: string;
+  category: RequestCategory;
+};
+
+export type UpdateRequestPayload = {
+  title: string;
+  description: string;
+  category: RequestCategory;
+};
+
+export type UpdateRequestStatusPayload = {
+  status: RequestStatus;
+};

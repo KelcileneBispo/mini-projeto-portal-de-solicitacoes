@@ -1,9 +1,11 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
+import Link from 'next/link';
 import { useState } from 'react';
 import { ApiError } from '@/lib/api/client';
 import { getDashboard, getRequests } from '@/lib/api/requests';
+import { requestNoticeMessage } from '@/lib/requests/actions';
 import {
   applyRequestFilters,
   clearRequestFilters,
@@ -11,7 +13,9 @@ import {
   hasActiveFilters,
   REQUEST_PAGE_LIMIT,
 } from '@/lib/requests/filters';
+import { dashboardQueryKey, requestsQueryKey } from '@/lib/requests/query';
 import type { RequestFilters } from '@/types/api';
+import { FeedbackBanner } from './feedback-banner';
 import { DashboardCards, DashboardCardsSkeleton } from './dashboard-cards';
 import { LoadError } from './load-error';
 import { RequestFiltersForm } from './request-filters';
@@ -22,24 +26,38 @@ import {
 } from './request-list';
 import { RequestPagination } from './request-pagination';
 
-export function RequestsScreen() {
+type RequestsScreenProps = {
+  notice?: string;
+};
+
+export function RequestsScreen({ notice }: RequestsScreenProps) {
   const [draft, setDraft] = useState<RequestFilters>(emptyFilters);
   const [applied, setApplied] = useState<RequestFilters>(emptyFilters);
   const [page, setPage] = useState(1);
+  const successMessage = requestNoticeMessage(notice);
   const dashboardQuery = useQuery({
-    queryKey: ['dashboard'],
+    queryKey: dashboardQueryKey,
     queryFn: getDashboard,
   });
   const listQuery = useQuery({
-    queryKey: ['requests', applied, page, REQUEST_PAGE_LIMIT],
+    queryKey: [...requestsQueryKey, applied, page, REQUEST_PAGE_LIMIT],
     queryFn: () => getRequests(applied, page, REQUEST_PAGE_LIMIT),
   });
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
-        Solicitações
-      </h1>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+          Solicitações
+        </h1>
+        <Link
+          href="/requests/new"
+          className="inline-flex min-h-11 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white outline-none hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        >
+          Nova solicitação
+        </Link>
+      </div>
+      {successMessage ? <FeedbackBanner message={successMessage} /> : null}
 
       {dashboardQuery.isPending ? <DashboardCardsSkeleton /> : null}
       {dashboardQuery.isError ? (

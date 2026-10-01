@@ -12,7 +12,7 @@ export function LoadError({ message, onRetry }: LoadErrorProps) {
       <p className="text-sm text-red-800">{message}</p>
       <button
         type="button"
-        className="mt-4 rounded-md bg-slate-900 px-3 py-2 text-sm font-medium text-white outline-none hover:bg-slate-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900"
+        className="mt-4 rounded-md bg-primary px-3 py-2 text-sm font-medium text-white outline-none hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         onClick={onRetry}
       >
         Tentar novamente

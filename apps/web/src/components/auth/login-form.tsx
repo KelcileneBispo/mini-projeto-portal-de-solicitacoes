@@ -88,7 +88,7 @@ export function LoginForm() {
 
       <button
         type="submit"
-        className="w-full rounded-md bg-slate-900 px-4 py-2.5 text-sm font-medium text-white outline-none hover:bg-slate-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 disabled:cursor-not-allowed disabled:bg-slate-400"
+        className="w-full rounded-md bg-primary px-4 py-2.5 text-sm font-medium text-white outline-none hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:bg-slate-400"
         disabled={isSubmitting}
         aria-busy={isSubmitting}
       >
